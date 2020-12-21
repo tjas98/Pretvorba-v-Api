@@ -4,11 +4,17 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var hbs = require('hbs');
+const flash = require('express-flash');
+const session = require('express-session');
+const passport = require('passport');
+require('./app_api/config/passport')(passport);
 
 var indexRouter = require('./app_server/routes/index');
 var usersRouter = require('./app_server/routes/users');
-var profilrouter = require('./app_server/routes/profil')
+var profilrouter = require('./app_server/routes/profil');
+var tekmaRouter = require('./app_server/routes/tekma');
 //var indexApi = require('./app_api/routes/index');
+var userApi = require('./app_api/routes/prijava');
 
 var app = express();
 
@@ -29,9 +35,24 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+app.use(express.urlencoded({ extended: true }));
+
+app.use(session({
+    secret: 'secret',
+    resave: true,
+    saveUninitialized: true
+}))
+
+app.use(passport.initialize());
+app.use(passport.session());
+
+app.use(flash());
+
 app.use('/', indexRouter);
 app.use('/', usersRouter);
 app.use('/', profilrouter);
+app.use('/', tekmaRouter);
+app.use('/', userApi);
 //app.use('/api', indexApi);
 
 // catch 404 and forward to error handler

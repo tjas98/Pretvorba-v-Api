@@ -17,4 +17,8 @@ router.get('/nastavitve_uredi', (req, res) => {
     res.render('nastavitve_uredi', { title: 'Uredi nastavitve' })
 });
 
+router.get('/profil_ostali', (req, res) => {
+    res.render('profil_ostali', { title: 'Profil' })
+});
+
 module.exports = router;

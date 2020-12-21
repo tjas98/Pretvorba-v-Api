@@ -26,6 +26,33 @@ hbs.registerHelper('zvezdica', (ocena) => {
         return rezultat;
 })
 
+hbs.registerHelper('pridobiMesto', (kraj) => {
+    let k = kraj + "";
+    let n = k.split(',');
+    return n[n.length - 1]
+})
+
+hbs.registerHelper('upper', (kraj) => {
+    let k = kraj + "";
+    let n = k.split(',');
+    return n[n.length - 1].toUpperCase();
+})
+
+hbs.registerHelper('lower', (kraj) => {
+    let k = kraj + "";
+    let n = k.split(',');
+    return n[n.length - 1].toLowerCase();
+})
+
+hbs.registerHelper('status', (kraj) => {
+    if(status === 'prijave'){
+        return "badge-primary";
+    }else if(status === 'zakljucena'){
+        return "badge-success";
+    }else{
+        return "badge-danger";
+    }
+})
 /*
 module.exports = {
     zvezdica: function (ocena){
