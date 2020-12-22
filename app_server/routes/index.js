@@ -1,9 +1,8 @@
 var express = require('express');
 var router = express.Router();
 
-/* GET home page. */
-router.get('/', (req, res) => {
-  res.render('hmpg', { title: 'Tap & Play' })
-});
+var contr = require('../controllers/main')
 
+/* GET home page. */
+router.get('/', contr.seznam)
 module.exports = router;

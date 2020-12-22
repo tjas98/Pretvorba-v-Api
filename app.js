@@ -11,10 +11,13 @@ require('./app_api/config/passport')(passport);
 
 var indexRouter = require('./app_server/routes/index');
 var usersRouter = require('./app_server/routes/users');
-var profilrouter = require('./app_server/routes/profil');
+//var profilrouter = require('./app_server/routes/profil');
 var tekmaRouter = require('./app_server/routes/tekma');
 //var indexApi = require('./app_api/routes/index');
 var userApi = require('./app_api/routes/prijava');
+var homepageApi = require('./app_api/routes/homepage');
+var ustvariTekmoApi = require('./app_api/routes/ustvariTekmo')
+var profilApi = require('./app_api/routes/profil')
 
 var app = express();
 
@@ -23,6 +26,7 @@ app.set('views', path.join(__dirname, 'app_server', 'views'));
 app.set('view engine', 'hbs');
 
 require('./app_server/views/helpers/hlps');
+require('./app_api/models/db');
 
 
 hbs.registerPartials(path.join(__dirname, "app_server", "views/partials"));
@@ -50,12 +54,16 @@ app.use(flash());
 
 app.use('/', indexRouter);
 app.use('/', usersRouter);
-app.use('/', profilrouter);
+//app.use('/', profilrouter);
 app.use('/', tekmaRouter);
 app.use('/', userApi);
+app.use('/', homepageApi);
+app.use('/', ustvariTekmoApi);
+app.use('/', profilApi);
 //app.use('/api', indexApi);
 
 // catch 404 and forward to error handler
+
 app.use(function(req, res, next) {
   next(createError(404));
 });
