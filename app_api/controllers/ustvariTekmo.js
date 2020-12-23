@@ -14,9 +14,7 @@ const ustvari_tekmo = (req, res) => {
 
 
 const ustvari_tekmo_POST = (req, res, done) => {
-    if(!req.user){
-        return res.redirect('/login');
-    }
+    
     let {lat, lng, kraj, datum, ura, minIgralcev, maxIgralcev, prijavljeni, komentarji } = req.body;
     prijavljeni += 1;
 
@@ -57,11 +55,14 @@ const ustvari_tekmo_POST = (req, res, done) => {
                 { $push: {tekme: tekma.id}},
                 done
             );
-            res.redirect('/');
+            res.status(201).send()
+            console.log(newTekma)
+            //res.redirect('/');
         })
         .catch(err => {
             console.log(err);
-            res.redirect('/ustvari_tekmo');
+            res.status(400).send(err)
+           // res.redirect('/ustvari_tekmo');
         });
 };
 

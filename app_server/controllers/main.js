@@ -1,5 +1,5 @@
 var apiParametri = {
-    streznik: 'http://localhost:3000'
+    streznik: 'http://localhost:3000' || process.env.NODE_ENV
 };
  
 const axios = require('axios').create({
@@ -8,12 +8,19 @@ const axios = require('axios').create({
 });
   
   const seznam = (req, res) => {
-        prikazi(req,res)
+      axios
+      .get('/tekme')
+      .then((tekma) => {
+          prikazi(req, res, tekma.data)
+      })
+        
   };
 
-const prikazi = (req, res) => {
+const prikazi = (req, res, tekme) => {
     res.render('hmpg', {
-       title: "AAAA"
+       title: "AAAA",
+       tekma: tekme,
+       user: req.user
     });
 }  
 

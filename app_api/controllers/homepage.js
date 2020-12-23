@@ -3,7 +3,7 @@ const User = require('../models/User');
 
 var homepage = (req, res) => {
     Tekma.find({}).lean().exec({}, function (err, tekma) {
-        res.status(200).send(tekma)
+        res.send(tekma)
     });
 };
 
