@@ -18,6 +18,7 @@ var userApi = require('./app_api/routes/prijava');
 var homepageApi = require('./app_api/routes/homepage');
 var ustvariTekmoApi = require('./app_api/routes/ustvariTekmo')
 var profilApi = require('./app_api/routes/profil')
+var tekmaApi = require('./app_api/routes/pop_up_tekma')
 
 var app = express();
 
@@ -60,6 +61,7 @@ app.use('/', userApi);
 app.use('/', homepageApi);
 app.use('/', ustvariTekmoApi);
 app.use('/', profilApi);
+app.use('/', tekmaApi)
 //app.use('/api', indexApi);
 
 // catch 404 and forward to error handler

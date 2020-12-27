@@ -55,14 +55,14 @@ const ustvari_tekmo_POST = (req, res, done) => {
                 { $push: {tekme: tekma.id}},
                 done
             );
-            res.status(201).send()
+            
             console.log(newTekma)
-            //res.redirect('/');
+            res.redirect('/');
         })
         .catch(err => {
             console.log(err);
-            res.status(400).send(err)
-           // res.redirect('/ustvari_tekmo');
+            
+           res.redirect('/ustvari_tekmo');
         });
 };
 

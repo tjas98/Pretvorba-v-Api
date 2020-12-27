@@ -18,7 +18,7 @@ const axios = require('axios').create({
 
 const prikazi = (req, res, tekme) => {
     res.render('hmpg', {
-       title: "AAAA",
+       title: "Homepage",
        tekma: tekme,
        user: req.user
     });
